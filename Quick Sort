@@ -26,6 +26,12 @@ O(n^2)
 대수학에서는 log는 밑이 10인 수지만 알고리즘에서는 밑이 2인것 같다.(통상적인 Big-O 시간 복잡도 표기법에서는 로그의 밑과 상관없이 로그라고 쓰는 것)
 
 재귀함수를 사용해서
+
+#include <stdio.h>
+
+int data[10] = { 1,10,5,8,7,6,4,3,2,9 };
+int number = 10;
+
 void quickSort(int *data, int start, int end)
 {
     if (start >= end) { // 원소가 1개인 경우
@@ -38,7 +44,7 @@ void quickSort(int *data, int start, int end)
 
     while (i <= j) // 엇갈릴 때까지 반복
     {
-        while (data[i] <= data[key]) //키 값보다 큰 값 만날때 까지
+        while (i <= end && data[i] <= data[key]) //키 값보다 큰 값 만날때 까지
             i++;
         while (data[j] >= data[key] && j > start) //키 값보다 작은 값 만날때 까지
             j--;
@@ -58,4 +64,13 @@ void quickSort(int *data, int start, int end)
     }
     quickSort(data, start, j - 1);
     quickSort(data, j + 1, end);
+}
+
+int main(void) {   
+
+    quickSort(data, 0, number - 1);
+    for (int i = 0; i < number; i++)
+        printf("%d ", data[i]);
+
+    return 0;
 }
