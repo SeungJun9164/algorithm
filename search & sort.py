@@ -46,9 +46,9 @@ def merge(left, right):
             arr.append(right[j])
             j += 1
 
-    if i == len(left):
+    if i <= len(left):
         arr = arr + right[j:]
-    if j == len(right):
+    if j <= len(right):
         arr = arr + left[i:]
     return arr
 
@@ -68,7 +68,7 @@ print(merge_sort(d))
 def quick_sort_sub(a):
     if len(a) <= 1:
         return a
-    pivot = a[len(a)//2]
+    pivot = a[len(a) - 1]
     left, right, equal = [], [], []
     for i in a:
         if i < pivot:
@@ -81,3 +81,14 @@ def quick_sort_sub(a):
 
 d = [6, 8, 3, 9, 10, 1, 2, 4, 7, 5]
 print(quick_sort_sub(d))
+
+# 버블 정렬
+def BubbleSort(a):
+    n = len(a)
+    for i in range(n-1):
+        for j in range(n-i-1):
+            if a[j] > a[j+1]:
+                a[j], a[j+1] = a[j+1], a[j]
+    return a
+d = [6, 8, 3, 9, 10, 1, 2, 4, 7, 5]
+print(BubbleSort(d))
