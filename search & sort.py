@@ -34,3 +34,50 @@ d = [2, 4, 5, 1, 3]
 ins_sort(d)
 print(d)
 
+# 병합 정렬
+def merge(left, right):
+    arr = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            arr.append(left[i])
+            i += 1
+        else:
+            arr.append(right[j])
+            j += 1
+
+    if i == len(left):
+        arr = arr + right[j:]
+    if j == len(right):
+        arr = arr + left[i:]
+    return arr
+
+def merge_sort(a):
+    n = len(a)
+    if n <= 1:
+        return a
+    mid = n // 2
+    left = merge_sort(a[:mid])
+    right = merge_sort(a[mid:])
+    return merge(left, right)
+
+d = [6, 8, 3, 9, 10, 1, 2, 4, 7, 5]
+print(merge_sort(d))
+
+# 퀵 정렬
+def quick_sort_sub(a):
+    if len(a) <= 1:
+        return a
+    pivot = a[len(a)//2]
+    left, right, equal = [], [], []
+    for i in a:
+        if i < pivot:
+            left.append(i)
+        elif i == pivot:
+            equal.append(i)
+        elif i > pivot:
+            right.append(i)
+    return quick_sort_sub(left) + equal + quick_sort_sub(right)
+
+d = [6, 8, 3, 9, 10, 1, 2, 4, 7, 5]
+print(quick_sort_sub(d))
