@@ -8,6 +8,21 @@ def search_list(a, x):
     return -1
 print(search_list(arr, 58))
 
+# 이분탐색
+def binary_search(a, x):
+    start = 0
+    end = len(a) - 1
+    while start <= end:
+        mid = (start + end) // 2
+        if x == a[mid]:
+            return mid
+        elif x > a[mid]:
+            start = mid + 1
+        elif x > a[mid]:
+            end = mid - 1
+    return -1
+print(binary_search(arr, 33))
+
 # 선택 정렬
 def find_sort_list(a):
     n = len(a)
@@ -46,10 +61,12 @@ def merge(left, right):
             arr.append(right[j])
             j += 1
 
-    if i <= len(left):
-        arr = arr + right[j:]
-    if j <= len(right):
-        arr = arr + left[i:]
+    while i < len(left):
+        arr.append(left[i])
+        i += 1
+    while j < len(right):
+        arr.append(right[j])
+        j += 1
     return arr
 
 def merge_sort(a):
@@ -92,3 +109,5 @@ def BubbleSort(a):
     return a
 d = [6, 8, 3, 9, 10, 1, 2, 4, 7, 5]
 print(BubbleSort(d))
+
+
